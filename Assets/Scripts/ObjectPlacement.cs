@@ -38,6 +38,7 @@ public class ObjectPlacement : MonoBehaviour
     {
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
         {
+            PlayerPocket.Money--;
             focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y + (objectHeight / 2), Mathf.RoundToInt(hit.point.z));
             focusedObject = null;
         }
