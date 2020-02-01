@@ -13,6 +13,8 @@ public class AgentSelection : MonoBehaviour
     public LayerMask targetableLayers;
     public float raycastDistance;
 
+    public GameObject[] testObjects;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -43,14 +45,28 @@ public class AgentSelection : MonoBehaviour
         }
 
         //Set target of selected agents
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && selectedAgents.Count > 0)
         {
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, targetableLayers))
             {
+                if (hit.collider.gameObject.CompareTag("Machine"))
+                {
+                    //Vector3[] targets = new Vector3[9];
+                }
                 //Check if machine
                 //  Place the agents around the machine, evenly spaced
                 //Else, just move to the position
                 SetTarget(hit.point);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            for (int i = 0; i < testObjects.Length; i++)
+            {
+                float increment = (float)(i+1) / (float)testObjects.Length;
+                Debug.Log(increment);
+                //testObjects[i].transform.position = (i / testObjects.Length)
             }
         }
     }
