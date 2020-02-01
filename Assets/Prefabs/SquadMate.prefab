@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7904232830174723058}
   - component: {fileID: 7904232830174723059}
   - component: {fileID: 5418580983272006761}
+  - component: {fileID: -1254029708927719522}
   m_Layer: 10
   m_Name: SquadMate
   m_TagString: Untagged
@@ -129,3 +130,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1254029708927719522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904232830174723020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f60c52ced43c84a850cea16f9e2551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RepairRadius: 2
+  RepairRate: 1
+  RestoreAmmount: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 512

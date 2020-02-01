@@ -32,8 +32,13 @@ public class ObjectPlacement : MonoBehaviour
     {
         if (!focusedObject)
         {
-            GameObject newObject = Instantiate(objectPrefab);
-            focusedObject = newObject;
+            ulong neededCost = objectPrefab.GetComponent<MoneyMachine>().Cost;
+            if (PlayerPocket.Money >= neededCost)
+            {
+                GameObject newObject = Instantiate(objectPrefab);
+                focusedObject = newObject;
+            }
+
         }
     }
 
@@ -41,9 +46,10 @@ public class ObjectPlacement : MonoBehaviour
     {
         if (focusedObject && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
         {
-            PlayerPocket.Money--;
+            PlayerPocket.Money -= focusedObject.GetComponent<MoneyMachine>().Cost;
             focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y, Mathf.RoundToInt(hit.point.z));
             focusedObject = null;
+            
         }
     }
 }
