@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoneyMachine : MonoBehaviour
 {
     public float Health = 10;
-    public float Income = 10;
+    public ulong Income = 10;
     public float IncomeTickRate = 1;
 
     float timer = 0;

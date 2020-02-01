@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerPocket : MonoBehaviour
 {
+    private static ulong money;
 
-    private static float money;
-
-    public static float Money
+    public static ulong Money
     {
         get => money;
         set
@@ -19,10 +18,8 @@ public class PlayerPocket : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
         Money = 0;
     }
-
 }

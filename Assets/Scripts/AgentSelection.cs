@@ -25,7 +25,8 @@ public class AgentSelection : MonoBehaviour
                    Input.GetKey(KeyCode.LeftShift) ||
                    Input.GetKey(KeyCode.RightShift))
                 {
-                    selectedAgents.Add(hit.collider.gameObject.GetComponent<AgentNavigation>());
+                    if(!selectedAgents.Contains(hit.collider.gameObject.GetComponent<AgentNavigation>()))
+                        selectedAgents.Add(hit.collider.gameObject.GetComponent<AgentNavigation>());
                 }
                 //Select singular
                 else
@@ -45,7 +46,12 @@ public class AgentSelection : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, targetableLayers))
+            {
+                //Check if machine
+                //  Place the agents around the machine, evenly spaced
+                //Else, just move to the position
                 SetTarget(hit.point);
+            }
         }
     }
 
