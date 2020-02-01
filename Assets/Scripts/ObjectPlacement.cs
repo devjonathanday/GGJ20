@@ -5,22 +5,41 @@ using UnityEngine;
 public class ObjectPlacement : MonoBehaviour
 {
     [Header("Object Properties")]
-    public Transform myObject;
     public float objectHeight;
-    public Transform cam;
+
+    [Header("References")]
+    public GameObject focusedObject;
+    public Camera cam;
+
+    [Header("Projection Properties")]
     public LayerMask placeableLayers;
     public float raycastDistance;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
-        if(Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, raycastDistance, placeableLayers))
+        if (focusedObject)
         {
-            myObject.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y + (objectHeight / 2), Mathf.RoundToInt(hit.point.z));
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
+                focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y + (objectHeight / 2), Mathf.RoundToInt(hit.point.z));
+        }
+        if(Input.GetMouseButtonDown(0))
+        {
+            TryFinishPlacement();
+        }
+    }
+
+    public void StartNewPlacement(GameObject objectPrefab)
+    {
+        GameObject newObject = Instantiate(objectPrefab);
+        focusedObject = newObject;
+    }
+
+    public void TryFinishPlacement()
+    {
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
+        {
+            focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y + (objectHeight / 2), Mathf.RoundToInt(hit.point.z));
+            focusedObject = null;
         }
     }
 }
