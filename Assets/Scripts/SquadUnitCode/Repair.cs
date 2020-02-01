@@ -5,6 +5,8 @@ using UnityEngine;
 public class Repair : MonoBehaviour
 {
     public float RepairRadius;
+    public float RepairRate;
+    public float RestoreAmmount = 1;
     public LayerMask mask;
 
     private bool repairFlag = false;
@@ -18,7 +20,7 @@ public class Repair : MonoBehaviour
     }
 
 
-    public float RestoreAmmount = 1;
+
 
     float timer = 0;
 
@@ -34,8 +36,17 @@ public class Repair : MonoBehaviour
     {
         while (repairFlag)
         {
+            timer += Time.deltaTime;
             RaycastHit hit;
-            Physics.SphereCast(transform.position, RepairRadius, Vector3.zero, out hit, 0, mask);
+
+            if (timer > RepairRate)
+            {
+                if (Physics.SphereCast(transform.position, RepairRadius, Vector3.zero, out hit, 0, mask))
+                {
+                    hit.collider.GetComponent<MoneyMachine>().Health += RestoreAmmount;
+                }
+            }
+
             yield return new WaitForFixedUpdate();
         }
     }
