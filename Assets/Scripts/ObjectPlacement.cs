@@ -20,7 +20,7 @@ public class ObjectPlacement : MonoBehaviour
         if (focusedObject)
         {
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
-                focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y + (objectHeight / 2), Mathf.RoundToInt(hit.point.z));
+                focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y, Mathf.RoundToInt(hit.point.z));
         }
         if(Input.GetMouseButtonDown(0))
         {
@@ -30,8 +30,11 @@ public class ObjectPlacement : MonoBehaviour
 
     public void StartNewPlacement(GameObject objectPrefab)
     {
-        GameObject newObject = Instantiate(objectPrefab);
-        focusedObject = newObject;
+        if (!focusedObject)
+        {
+            GameObject newObject = Instantiate(objectPrefab);
+            focusedObject = newObject;
+        }
     }
 
     public void TryFinishPlacement()
@@ -39,7 +42,7 @@ public class ObjectPlacement : MonoBehaviour
         if (focusedObject && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
         {
             PlayerPocket.Money--;
-            focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y + (objectHeight / 2), Mathf.RoundToInt(hit.point.z));
+            focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y, Mathf.RoundToInt(hit.point.z));
             focusedObject = null;
         }
     }
