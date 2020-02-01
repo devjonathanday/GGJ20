@@ -5,7 +5,7 @@ using UnityEngine;
 public class Repair : MonoBehaviour
 {
     public float RepairRadius;
-    public float RepairRate;
+    public float RepairRate = 1;
     public float RestoreAmmount = 1;
     public LayerMask mask;
 
@@ -16,6 +16,10 @@ public class Repair : MonoBehaviour
         set
         {
             repairFlag = value;
+            if (value == true)
+            {
+                StartCoroutine(RepairProcess());
+            }
         }
     }
 
