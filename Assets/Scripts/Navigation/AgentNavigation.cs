@@ -34,9 +34,4 @@ public class AgentNavigation : MonoBehaviour
         agent.SetDestination(goalLocation);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
