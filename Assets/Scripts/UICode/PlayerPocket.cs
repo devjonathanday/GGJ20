@@ -15,9 +15,7 @@ public class PlayerPocket : MonoBehaviour
             if (money != value)
             {
                 money = value;
-                Debug.Log(money);
             }
-
         }
     }
 
