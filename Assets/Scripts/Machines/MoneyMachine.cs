@@ -6,11 +6,11 @@ public class MoneyMachine : MonoBehaviour
 {
     public float Health = 10;
     public ulong Income = 10;
+    public ulong Cost;
     public float IncomeTickRate = 1;
 
     float timer = 0;
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
