@@ -6,6 +6,7 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     public string MoneyLaundered;
+    public TextMeshProUGUI uGUI;
 
 
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoneyLaundered = "Score: " + PlayerPocket.Money.ToString();
+        MoneyLaundered = "SCORE: " + PlayerPocket.Money.ToString();
+        uGUI.text = MoneyLaundered;
     }
 }
