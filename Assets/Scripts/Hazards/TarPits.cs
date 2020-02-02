@@ -18,6 +18,9 @@ public class TarPits : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        if (collision.collider.GetComponent<AgentNavigation>() != null)
+        {
+            collision.collider.GetComponent<AgentNavigation>().Death();
+        }
     }
 }
