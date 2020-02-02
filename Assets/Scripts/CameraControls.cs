@@ -43,7 +43,7 @@ public class CameraControls : MonoBehaviour
             cam.transform.localPosition = camDefaultPos + shakeDirection * shakeAmount * currentShakeTimer;
         }
 
-        if (Input.GetKeyDown(KeyCode.L)) Shake();
+        //if (Input.GetKeyDown(KeyCode.L)) Shake();
     }
 
     void Shake()

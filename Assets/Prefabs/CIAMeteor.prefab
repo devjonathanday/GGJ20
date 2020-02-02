@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7096310557347628016}
   - component: {fileID: 7096310557347628023}
   - component: {fileID: 7096310557347628022}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CIAMeteor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
