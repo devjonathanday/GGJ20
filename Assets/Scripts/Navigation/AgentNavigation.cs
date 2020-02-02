@@ -9,6 +9,7 @@ public class AgentNavigation : MonoBehaviour
     public NavMeshAgent agent;
     private Vector3 goalLocation;
     public GameObject selectedUI;
+    public GameObject explosion;
 
     public Vector3 GoalLocation
     {
@@ -22,7 +23,10 @@ public class AgentNavigation : MonoBehaviour
             }          
         }
     }
-
+    void Start()
+    {
+        Time.timeScale = 1;
+    }
 
     void Update()
     {
@@ -55,6 +59,8 @@ public class AgentNavigation : MonoBehaviour
     }
     public void Death()
     {
+        Instantiate(explosion, transform.position, Quaternion.identity);
         LossConditions.WorkersLeft--;
+        Destroy(gameObject);
     }
 }

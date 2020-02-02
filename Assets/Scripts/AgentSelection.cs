@@ -89,4 +89,10 @@ public class AgentSelection : MonoBehaviour
             }
         }
     }
+
+    //public void EvaluateWorkers()
+    //{
+    //    for (int i = 0; i < selectedAgents.Count; i++)
+    //        if (selectedAgents[i] == null) selectedAgents.RemoveAt(i);
+    //}
 }

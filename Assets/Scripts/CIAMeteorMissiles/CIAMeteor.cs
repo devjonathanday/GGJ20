@@ -9,26 +9,54 @@ public class CIAMeteor : MonoBehaviour
     public float FallSpeed = 10;
     public float ExplosionRadius = 4;
     public ParticleSystem particles;
+    public GameObject explosion;
+    public bool hit;
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
-        particles.Play();
         Collider[] hits;
-        hits = Physics.OverlapSphere(transform.position, ExplosionRadius,mask);
+        hits = Physics.OverlapSphere(transform.position, ExplosionRadius, mask);
         foreach (Collider item in hits)
         {
-            item.GetComponent<MoneyMachine>().Health -= Damage;
+            MoneyMachine machine = item.GetComponent<MoneyMachine>();
+            if (machine != null)
+            {
+                machine.Health = 0;
+                machine.Broken = true;
+                continue;
+            }
+
+            AgentNavigation agent = item.GetComponent<AgentNavigation>();
+            if (agent != null)
+            {
+                agent.Death();
+                continue;
+            }
         }
 
-        gameObject.GetComponent<Collider>().enabled = false;
-        Destroy(gameObject, particles.main.duration);
-
+        if (!hit)
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            GetComponent<MeshRenderer>().enabled = false;
+            StartCoroutine(DeathRoutine());
+            hit = true;
+            //gameObject.GetComponent<Collider>().enabled = false;
+            //Destroy(gameObject, particles.main.duration);
+        }
     }
 
-    private void OnDrawGizmos()
+    IEnumerator DeathRoutine()
     {
-        Gizmos.DrawWireSphere(transform.position, 4);
+        for (float i = 0; i < 0.05f; i += Time.deltaTime)
+            yield return null;
+
+        Destroy(gameObject);
     }
+
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, 4);
+    //}
 
 }

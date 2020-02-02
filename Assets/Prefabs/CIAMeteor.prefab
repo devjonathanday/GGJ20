@@ -4844,7 +4844,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7096310557347628021}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -4879,11 +4879,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   Damage: 5
   FallSpeed: 10
   ExplosionRadius: 4
   particles: {fileID: 7096310557347628024}
+  explosion: {fileID: 6240859174777166343, guid: ef680db7181cfa041a20090aad72786b,
+    type: 3}
+  hit: 0
 --- !u!199 &7096310557347628023
 ParticleSystemRenderer:
   serializedVersion: 6
