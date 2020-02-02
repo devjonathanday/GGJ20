@@ -8,6 +8,7 @@ public class AgentNavigation : MonoBehaviour
     public Repair repair;
     public NavMeshAgent agent;
     private Vector3 goalLocation;
+    public GameObject selectedUI;
 
     public Vector3 GoalLocation
     {
@@ -43,6 +44,14 @@ public class AgentNavigation : MonoBehaviour
     public void GoToDestination()
     {
         agent.SetDestination(goalLocation);
+    }
+    public void SetSelected()
+    {
+        selectedUI.SetActive(true);
+    }
+    public void SetDeselected()
+    {
+        selectedUI.SetActive(false);
     }
 
 }

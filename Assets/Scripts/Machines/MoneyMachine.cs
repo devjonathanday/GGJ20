@@ -8,7 +8,8 @@ public class MoneyMachine : MonoBehaviour
     public ulong Income = 10;
     public ulong Cost;
     public float IncomeTickRate = 1;
-    public ParticleSystem smokeEffect;
+    public GameObject workingEffects;
+    public GameObject brokenEffects;
     bool broken;
     public bool Broken
     {
@@ -16,8 +17,16 @@ public class MoneyMachine : MonoBehaviour
         set
         {
             broken = value;
-            if (broken) smokeEffect.Play();
-            else smokeEffect.Stop();
+            if (broken) 
+            {
+                brokenEffects.SetActive(true);
+                workingEffects.SetActive(false);
+            }
+            else
+            {
+                brokenEffects.SetActive(false);
+                workingEffects.SetActive(true);
+            }
         }
     }
     float timer = 0;
@@ -28,8 +37,15 @@ public class MoneyMachine : MonoBehaviour
 
         if (timer > IncomeTickRate)
         {
-            PlayerPocket.Money += Income;
+            if(!broken) PlayerPocket.Money += Income;
             timer = 0;
+        }
+
+        //TODO remove this
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Health = 0;
+            Broken = true;
         }
     }
 }
