@@ -53,5 +53,8 @@ public class AgentNavigation : MonoBehaviour
     {
         selectedUI.SetActive(false);
     }
-
+    public void Death()
+    {
+        LossConditions.WorkersLeft--;
+    }
 }

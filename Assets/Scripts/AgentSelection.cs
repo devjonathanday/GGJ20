@@ -15,6 +15,10 @@ public class AgentSelection : MonoBehaviour
     public float raycastDistance;
 
     public float distance;
+    void Start()
+    {
+        LossConditions.WorkersLeft = GameObject.FindGameObjectsWithTag("Agent").Length;
+    }
 
     void Update()
     {
