@@ -77,12 +77,12 @@ public class Repair : MonoBehaviour
                         else
                         {
                             MoneyMachine temp = item.GetComponent<MoneyMachine>();
-                            if(temp.Broken)
+                            if(temp.Broken && temp.Health > 0)
                             {
+                                temp.Health += RestoreAmmount;
                                 temp.Broken = false;
                             }
 
-                            temp.Health += RestoreAmmount;
                             timer = 0;
                             Debug.Log("BoogieBoi");
                         }
