@@ -1,0 +1,5 @@
+Total frames: 0-312
+
+Idle: 0-56
+Run: 57-99
+Work: 100-312
