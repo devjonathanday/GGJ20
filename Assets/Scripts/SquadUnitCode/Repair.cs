@@ -78,7 +78,7 @@ public class Repair : MonoBehaviour
                         {
                             MoneyMachine temp = item.GetComponent<MoneyMachine>();
                             temp.Health += RestoreAmmount;
-                            if (temp.Broken && temp.Health > 0)
+                            if (temp.Broken && temp.Health > 10)
                             {
                                 temp.Broken = false;
                             }

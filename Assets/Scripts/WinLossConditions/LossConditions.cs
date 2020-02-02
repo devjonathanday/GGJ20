@@ -22,6 +22,7 @@ public class LossConditions : MonoBehaviour
         if (WorkersLeft <= 0 || MachinesLeft <= 0)
         {
             LossScreenCanvas.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

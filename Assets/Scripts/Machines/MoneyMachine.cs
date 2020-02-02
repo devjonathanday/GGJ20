@@ -33,7 +33,7 @@ public class MoneyMachine : MonoBehaviour
             {
                 brokenEffects.SetActive(false);
                 workingEffects.SetActive(true);
-                if (lossContributed == false)
+                if (lossContributed == true)
                 {
                     LossConditions.MachinesLeft += 1;
                     lossContributed = false;
@@ -60,15 +60,11 @@ public class MoneyMachine : MonoBehaviour
             timer = 0;
         }
 
-
-
-        //TODO remove this
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            Health = 0;
-            Broken = true;
-        }
-
-
+        ////TODO remove this
+        //if(Input.GetKeyDown(KeyCode.K))
+        //{
+        //    Health = 0;
+        //    Broken = true;
+        //}
     }
 }

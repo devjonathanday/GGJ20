@@ -8,18 +8,12 @@ public class MeteorTargeting : MonoBehaviour
     public GameObject Meteor;
     public Vector2 FieldSize;
     public float SpawnRate = 10;
+    public float spawnDecay;
+    public float minimumSpawnRate;
     float timer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
         timer += Time.deltaTime;
         if (timer >= SpawnRate)
         {
@@ -31,6 +25,14 @@ public class MeteorTargeting : MonoBehaviour
                            ),
                         this.transform.rotation);
             timer = 0;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (SpawnRate > minimumSpawnRate)
+        {
+            SpawnRate /= spawnDecay;
         }
     }
 }
