@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Machine
   - Agent
+  - Hazard
   layers:
   - Default
   - TransparentFX
