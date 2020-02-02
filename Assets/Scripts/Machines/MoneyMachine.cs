@@ -11,6 +11,7 @@ public class MoneyMachine : MonoBehaviour
     public GameObject workingEffects;
     public GameObject brokenEffects;
     bool broken;
+    bool lossContributed = false;
     public bool Broken
     {
         get { return broken; }
@@ -21,18 +22,36 @@ public class MoneyMachine : MonoBehaviour
             {
                 brokenEffects.SetActive(true);
                 workingEffects.SetActive(false);
+                if(lossContributed == false)
+                {
+                    LossConditions.MachinesLeft -= 1;
+                    lossContributed = true;
+                }
+
             }
             else
             {
                 brokenEffects.SetActive(false);
                 workingEffects.SetActive(true);
+                if (lossContributed == false)
+                {
+                    LossConditions.MachinesLeft += 1;
+                    lossContributed = false;
+                }
             }
+
         }
     }
     float timer = 0;
 
+    private void Start()
+    {
+        LossConditions.MachinesLeft += 1;
+    }
+
     void Update()
     {
+
         timer += Time.deltaTime;
 
         if (timer > IncomeTickRate)
@@ -41,11 +60,15 @@ public class MoneyMachine : MonoBehaviour
             timer = 0;
         }
 
+
+
         //TODO remove this
         if(Input.GetKeyDown(KeyCode.K))
         {
             Health = 0;
             Broken = true;
         }
+
+
     }
 }
