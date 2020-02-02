@@ -12,17 +12,20 @@ public class ObjectPlacement : MonoBehaviour
     public Camera cam;
 
     [Header("Projection Properties")]
-    public LayerMask placeableLayers;
     public float raycastDistance;
+    public LayerMask placeableLayers;
 
     void Update()
     {
         if (focusedObject)
         {
-            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
-                focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y, Mathf.RoundToInt(hit.point.z));
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance))
+            {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                    focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y, Mathf.RoundToInt(hit.point.z));
+            }
         }
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             TryFinishPlacement();
         }
@@ -47,9 +50,8 @@ public class ObjectPlacement : MonoBehaviour
         if (focusedObject && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, raycastDistance, placeableLayers))
         {
             PlayerPocket.Money -= focusedObject.GetComponent<MoneyMachine>().Cost;
-            focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y, Mathf.RoundToInt(hit.point.z));
+            //focusedObject.transform.position = new Vector3(Mathf.RoundToInt(hit.point.x), hit.point.y, Mathf.RoundToInt(hit.point.z));
             focusedObject = null;
-            
         }
     }
 }
