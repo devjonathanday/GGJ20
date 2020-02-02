@@ -256,6 +256,7 @@ MonoBehaviour:
   Income: 10
   Cost: 0
   IncomeTickRate: 1
+  broken: 0
 --- !u!65 &1039795700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -437,6 +438,7 @@ MonoBehaviour:
   Income: 10
   Cost: 0
   IncomeTickRate: 1
+  broken: 0
 --- !u!208 &1151543509
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -611,6 +613,7 @@ GameObject:
   - component: {fileID: 2083955781}
   - component: {fileID: 2083955780}
   - component: {fileID: 2083955779}
+  - component: {fileID: 2083955783}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -691,6 +694,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2083955783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083955778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b20c514a8a84745bcbde819af1de35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnHight: 50
+  Meteor: {fileID: 7096310557347628021, guid: ac9a577c35b0dc5429356fc43f99fefd, type: 3}
+  FieldSize: {x: 10, y: 10}
+  SpawnRate: 1
 --- !u!1001 &3353829189616982682
 PrefabInstance:
   m_ObjectHideFlags: 0
