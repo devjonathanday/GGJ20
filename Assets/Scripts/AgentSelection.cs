@@ -28,20 +28,35 @@ public class AgentSelection : MonoBehaviour
                    Input.GetKey(KeyCode.LeftShift) ||
                    Input.GetKey(KeyCode.RightShift))
                 {
-                    if(!selectedAgents.Contains(hit.collider.gameObject.GetComponent<AgentNavigation>()))
+                    if (!selectedAgents.Contains(hit.collider.gameObject.GetComponent<AgentNavigation>()))
+                    {
                         selectedAgents.Add(hit.collider.gameObject.GetComponent<AgentNavigation>());
+                        //selectedAgents[selectedAgents.Count - 1].SetSelected(); TODO
+                    }
                 }
                 //Select singular
                 else
                 {
-                    selectedAgents.Clear();
+                    for (int i = 0; i < selectedAgents.Count; i++)
+                        //selectedAgents[i].SetDeselected(); TODO
+                        selectedAgents.Clear();
+
                     selectedAgents.Add(hit.collider.gameObject.GetComponent<AgentNavigation>());
+                    //selectedAgents[selectedAgents.Count - 1].SetSelected(); TODO
                 }
             }
             //Deselect
             else
             {
-                selectedAgents.Clear();
+                if (!Input.GetKey(KeyCode.LeftControl)  &&
+                    !Input.GetKey(KeyCode.RightControl) &&
+                    !Input.GetKey(KeyCode.LeftShift)    &&
+                    !Input.GetKey(KeyCode.RightShift))
+                {
+                    for (int i = 0; i < selectedAgents.Count; i++)
+                        //selectedAgents[i].SetDeselected(); TODO
+                        selectedAgents.Clear();
+                }
             }
         }
 
@@ -58,13 +73,15 @@ public class AgentSelection : MonoBehaviour
                         float increment = ((float)(i + 1) / (float)agentsToSend) * Mathf.PI * 2;
                         selectedAgents[i].GoalLocation = hit.transform.position + new Vector3(Mathf.Sin(increment) * distance, 0, Mathf.Cos(increment) * distance);
                     }
-                    selectedAgents.Clear();
                 }
                 else
                 {
                     for (int i = 0; i < selectedAgents.Count; i++)
                         selectedAgents[i].GoalLocation = hit.point;
                 }
+                for (int i = 0; i < selectedAgents.Count; i++)
+                    //selectedAgents[i].SetDeselected(); TODO
+                selectedAgents.Clear();
             }
         }
     }
