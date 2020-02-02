@@ -15,6 +15,10 @@ public class AgentSelection : MonoBehaviour
     public float raycastDistance;
 
     public float distance;
+    void Start()
+    {
+        LossConditions.WorkersLeft = GameObject.FindGameObjectsWithTag("Agent").Length;
+    }
 
     void Update()
     {
@@ -31,18 +35,18 @@ public class AgentSelection : MonoBehaviour
                     if (!selectedAgents.Contains(hit.collider.gameObject.GetComponent<AgentNavigation>()))
                     {
                         selectedAgents.Add(hit.collider.gameObject.GetComponent<AgentNavigation>());
-                        //selectedAgents[selectedAgents.Count - 1].SetSelected(); TODO
+                        selectedAgents[selectedAgents.Count - 1].SetSelected();
                     }
                 }
                 //Select singular
                 else
                 {
                     for (int i = 0; i < selectedAgents.Count; i++)
-                        //selectedAgents[i].SetDeselected(); TODO
+                        selectedAgents[i].SetDeselected();
                         selectedAgents.Clear();
 
                     selectedAgents.Add(hit.collider.gameObject.GetComponent<AgentNavigation>());
-                    //selectedAgents[selectedAgents.Count - 1].SetSelected(); TODO
+                    selectedAgents[selectedAgents.Count - 1].SetSelected();
                 }
             }
             //Deselect
@@ -54,7 +58,7 @@ public class AgentSelection : MonoBehaviour
                     !Input.GetKey(KeyCode.RightShift))
                 {
                     for (int i = 0; i < selectedAgents.Count; i++)
-                        //selectedAgents[i].SetDeselected(); TODO
+                        selectedAgents[i].SetDeselected();
                         selectedAgents.Clear();
                 }
             }
@@ -80,7 +84,7 @@ public class AgentSelection : MonoBehaviour
                         selectedAgents[i].GoalLocation = hit.point;
                 }
                 for (int i = 0; i < selectedAgents.Count; i++)
-                    //selectedAgents[i].SetDeselected(); TODO
+                    selectedAgents[i].SetDeselected();
                 selectedAgents.Clear();
             }
         }

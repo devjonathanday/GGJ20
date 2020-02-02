@@ -9,6 +9,8 @@ public class Repair : MonoBehaviour
     public float RestoreAmmount = 1;
     public LayerMask mask;
 
+    private bool repairingIsOn = false;
+
     private bool repairFlag = false;
     public bool RepairFlag
     {
@@ -18,7 +20,19 @@ public class Repair : MonoBehaviour
             repairFlag = value;
             if (value == true)
             {
-                StartCoroutine(RepairProcess());
+                if (repairingIsOn == false)
+                {
+                    StartCoroutine(RepairProcess());
+                }
+                else
+                {
+                    StopCoroutine(RepairProcess());
+                    if (value == true)
+                    {
+                        StartCoroutine(RepairProcess());
+                    }
+                }
+               
             }
         }
     }
@@ -36,21 +50,51 @@ public class Repair : MonoBehaviour
         
     }
 
+
+
+
     public IEnumerator RepairProcess()
     {
+        repairingIsOn = true;
         while (repairFlag)
         {
+
+            List<Collider> hits;
+            hits = new List<Collider>();
+            hits.AddRange(Physics.OverlapSphere(transform.position, RepairRadius, mask));
             timer += Time.deltaTime;
-            RaycastHit hit;
 
             if (timer > RepairRate)
             {
-                if (Physics.SphereCast(transform.position, RepairRadius, Vector3.zero, out hit, 0, mask))
+                if (hits.Capacity != 0)
                 {
-                    hit.collider.GetComponent<MoneyMachine>().Health += RestoreAmmount;
+                    foreach (Collider item in hits)
+                    {
+                        if (Vector3.Distance(transform.position, item.transform.position) > RepairRadius * 2)
+                        {
+                            hits.Remove(item);
+                        }
+                        else
+                        {
+                            MoneyMachine temp = item.GetComponent<MoneyMachine>();
+                            temp.Health += RestoreAmmount;
+                            if (temp.Broken && temp.Health > 0)
+                            {
+                                temp.Broken = false;
+                            }
+
+                            timer = 0;
+                            Debug.Log("BoogieBoi");
+                        }
+                    }
+                }
+                else
+                {
+                    repairingIsOn = false;
+                    RepairFlag = false;
+                    Debug.Log("exit");
                 }
             }
-
             yield return new WaitForFixedUpdate();
         }
     }
