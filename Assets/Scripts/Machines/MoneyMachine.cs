@@ -8,7 +8,7 @@ public class MoneyMachine : MonoBehaviour
     public ulong Income = 10;
     public ulong Cost;
     public float IncomeTickRate = 1;
-
+    public bool broken;
     float timer = 0;
 
     void Update()
