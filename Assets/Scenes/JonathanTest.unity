@@ -764,6 +764,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 963194227}
   camDefaultPos: {x: 0, y: 0, z: 0}
+  zoomSpeed: 0.5
+  zoomBounds: {x: 8, y: 15}
   rotationSpeed: 50
   shakeAmount: 0.25
   shakeTimer: 0.5
