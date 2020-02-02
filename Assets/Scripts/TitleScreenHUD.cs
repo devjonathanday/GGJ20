@@ -5,12 +5,26 @@ public class TitleScreenHUD : MonoBehaviour
 {
     public GameObject titleMenu;
     public GameObject controlsMenu;
+    public GameObject creditsMenu;
     public string gameSceneName;
 
+    public void DisplayTitle()
+    {
+        titleMenu.SetActive(true);
+        controlsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+    }
     public void DisplayControls()
     {
-        controlsMenu.SetActive(true);
         titleMenu.SetActive(false);
+        controlsMenu.SetActive(true);
+        creditsMenu.SetActive(false);
+    }
+    public void DisplayCredits()
+    {
+        titleMenu.SetActive(false);
+        controlsMenu.SetActive(false);
+        creditsMenu.SetActive(true);
     }
     public void StartGame()
     {
