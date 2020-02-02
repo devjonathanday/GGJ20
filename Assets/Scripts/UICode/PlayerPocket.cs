@@ -15,6 +15,7 @@ public class PlayerPocket : MonoBehaviour
             {
                 money = value;
             }
+
         }
     }
 
@@ -22,4 +23,5 @@ public class PlayerPocket : MonoBehaviour
     {
         Money = 0;
     }
+
 }
