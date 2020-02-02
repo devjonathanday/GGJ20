@@ -8,7 +8,18 @@ public class MoneyMachine : MonoBehaviour
     public ulong Income = 10;
     public ulong Cost;
     public float IncomeTickRate = 1;
-    public bool broken;
+    public ParticleSystem smokeEffect;
+    bool broken;
+    public bool Broken
+    {
+        get { return broken; }
+        set
+        {
+            broken = value;
+            if (broken) smokeEffect.Play();
+            else smokeEffect.Stop();
+        }
+    }
     float timer = 0;
 
     void Update()
