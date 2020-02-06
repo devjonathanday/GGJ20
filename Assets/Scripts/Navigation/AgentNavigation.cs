@@ -10,6 +10,7 @@ public class AgentNavigation : MonoBehaviour
     private Vector3 goalLocation;
     public GameObject selectedUI;
     public GameObject explosion;
+    public Animator animator;
 
     public Vector3 GoalLocation
     {
@@ -19,6 +20,7 @@ public class AgentNavigation : MonoBehaviour
             if (value != null)
             {
                 goalLocation = value;
+                animator.SetBool("Walking", true);
                 GoToDestination();
             }          
         }
@@ -42,6 +44,10 @@ public class AgentNavigation : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
         }
     }
 

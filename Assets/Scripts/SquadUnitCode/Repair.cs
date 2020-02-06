@@ -8,6 +8,7 @@ public class Repair : MonoBehaviour
     public float RepairRate = 1;
     public float RestoreAmmount = 1;
     public LayerMask mask;
+    public Animator animator;
 
     private bool repairingIsOn = false;
 
@@ -29,7 +30,9 @@ public class Repair : MonoBehaviour
                     StopCoroutine(RepairProcess());
                     if (value == true)
                     {
+                        animator.SetBool("Fixing", true);
                         StartCoroutine(RepairProcess());
+
                     }
                 }
                
@@ -58,7 +61,6 @@ public class Repair : MonoBehaviour
         repairingIsOn = true;
         while (repairFlag)
         {
-
             List<Collider> hits;
             hits = new List<Collider>();
             hits.AddRange(Physics.OverlapSphere(transform.position, RepairRadius, mask));
@@ -93,6 +95,7 @@ public class Repair : MonoBehaviour
                     repairingIsOn = false;
                     RepairFlag = false;
                     Debug.Log("exit");
+                    animator.SetBool("Fixing", false);
                 }
             }
             yield return new WaitForFixedUpdate();

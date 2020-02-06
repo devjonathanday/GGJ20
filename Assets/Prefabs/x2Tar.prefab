@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2557481102836709837}
   - component: {fileID: 1946585105884976202}
+  - component: {fileID: 9110795170588507285}
   m_Layer: 0
   m_Name: x2Tar
   m_TagString: Untagged
@@ -120,5 +121,17 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.91, y: 1, z: 1.75}
-  m_Center: {x: -0.48, y: 0, z: 1.09}
+  m_Size: {x: 0.82346666, y: 1, z: 1.5407782}
+  m_Center: {x: -0.48721105, y: 0, z: 0.98538923}
+--- !u!114 &9110795170588507285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110795170588507284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930de8560fe16dd4587fd4f0aa3eb356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
